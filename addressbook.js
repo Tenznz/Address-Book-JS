@@ -96,3 +96,6 @@ index = addressBookArray.findIndex((obj => obj.firstName == "Methok"));
 addressBookArray.pop(index);
 console.log("After Deletion");
 console.log(addressBookArray);
+//count contact
+let count = addressBookArray.length;
+console.log("Total contact in addressbook: "+count);
