@@ -1,28 +1,28 @@
 class Contact {
-    constructor(firstname, lastname, address, city, state, zipcode, phoneNumber, emailId) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    constructor(firstName, lastName, address, city, state, zipcode, phoneNumber, email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.city = city;
         this.state = state;
         this.zipcode = zipcode;
         this.phoneNumber = phoneNumber;
-        this.emailId = emailId;
+        this.email = email;
     }
 
-    get firstname() { return this._firstname; }
-    set firstname(firstname) {
+    get firstName() { return this._firstname; }
+    set firstName(firstName) {
         let pattern1 = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (pattern1.test(firstname))
-            this._firstname = firstname;
+        if (pattern1.test(firstName))
+            this._firstname = firstName;
         else console.log('FirstName is Incorrect!');
     }
 
-    get lastname() { return this._lastname; }
-    set lastname(lastname) {
+    get lastName() { return this._lastName; }
+    set lastName(lastName) {
         let pattern2 = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        if (pattern2.test(lastname))
-            this._lastname = lastname;
+        if (pattern2.test(lastName))
+            this._lastName = lastName;
         else console.log('LastName is Incorrect!');
     }
 
@@ -66,36 +66,62 @@ class Contact {
         else console.log('PhoneNumber is Incorrect!');
     }
 
-    get emailId() { return this._emailId; }
-    set emailId(emailId) {
+    get email() { return this._email; }
+    set email(email) {
         let pattern8 = RegExp('^[0-9a-zA-Z+-._]+@[0-9a-zA-Z]+.[a-zA-Z]{2,3}.([a-zA-z]{2,3})*$');
-        if (pattern8.test(emailId))
-            this._emailId = emailId;
-        else console.log('EmailId is Incorrect!');
+        if (pattern8.test(email))
+            this._email = email;
+        else console.log('email is Incorrect!');
     }
 
     toString() {
-        return "firstname = " + this.firstname + ", lastname = " + this.lastname + ", address = " + this.address +
+        return "firstName = " + this.firstName + ", lastName = " + this.lastName + ", address = " + this.address +
             ", city = " + this.city + ", state = " + this.state + ", zipcode = " + this.zipcode +
-            ", phoneNumber = " + this.phoneNumber + ", emailId = " + this.emailId;
+            ", phoneNumber = " + this.phoneNumber + ", email = " + this.email;
     }
 }
+
 //add
 let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
 let addressBookArray = new Array();
 addressBookArray.push(personContact1);
 addressBookArray[1] = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
 console.log(addressBookArray);
+
 //update
-let index = addressBookArray.findIndex((obj => obj._firstname == "Methok"));
+let index = addressBookArray.findIndex((obj => obj.firstName == "Methok"));
 console.log("Before Update : " + addressBookArray[index]);
 addressBookArray[index].city = "Toronto";
 console.log("After Update : " + addressBookArray[index]);
+
 //delete
 index = addressBookArray.findIndex((obj => obj.firstName == "Methok"));
 addressBookArray.pop(index);
 console.log("After Deletion");
 console.log(addressBookArray);
+
 //count contact
 let count = addressBookArray.length;
-console.log("Total contact in addressbook: "+count);
+console.log("Total contact in addressbook: " + count);
+
+// check for Duplicate Entry
+let personContact3 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
+
+// check = false;
+// for (i = 0; i < count; i++) {
+//     if (addressBookArray[i].firstName == personContact3.firstName) {
+//         console.log("Duplicate Entry");
+//         check = true;
+//         break;
+//     }
+// }
+// if (check == false)
+//     addressBookArray.push(personContact3);
+
+if (addressBookArray.findIndex(contact => contact.firstName == personContact3.firstName) == -1) {
+    addressBookArray.push(personContact3);
+}
+else {
+    console.log("Duplicate Entry");
+}
+console.log(addressBookArray);
