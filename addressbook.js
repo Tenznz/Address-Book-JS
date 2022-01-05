@@ -80,14 +80,19 @@ class Contact {
             ", phoneNumber = " + this.phoneNumber + ", emailId = " + this.emailId;
     }
 }
-
+//add
 let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
 let addressBookArray = new Array();
 addressBookArray.push(personContact1);
 addressBookArray[1] = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
 console.log(addressBookArray);
-
+//update
 let index = addressBookArray.findIndex((obj => obj._firstname == "Methok"));
 console.log("Before Update : " + addressBookArray[index]);
 addressBookArray[index].city = "Toronto";
 console.log("After Update : " + addressBookArray[index]);
+//delete
+index = addressBookArray.findIndex((obj => obj.firstName == "Methok"));
+addressBookArray.pop(index);
+console.log("After Deletion");
+console.log(addressBookArray);
