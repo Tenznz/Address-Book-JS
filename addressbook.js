@@ -85,7 +85,8 @@ class Contact {
 let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
 let addressBookArray = new Array();
 addressBookArray.push(personContact1);
-addressBookArray[1] = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
+let personContact2 = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
+addressBookArray.push(personContact2);
 console.log(addressBookArray);
 
 //update
@@ -125,3 +126,7 @@ else {
     console.log("Duplicate Entry");
 }
 console.log(addressBookArray);
+addressBookArray.push(personContact2)
+let cityOrState = addressBookArray.filter(contact => (contact.state == "Karnataka") || (contact.city == "Banglore"));
+console.log("Contacts from City Banglore or State Karnataka are : ");
+console.log(cityOrState);
