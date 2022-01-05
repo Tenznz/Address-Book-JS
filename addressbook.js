@@ -60,7 +60,7 @@ class Contact {
 
     get phoneNumber() { return this._phoneNumber; }
     set phoneNumber(phoneNumber) {
-        let pattern7 = RegExp('^[+][0-9]{2}\\s?[1-9]{1}[0-9]{9}$');
+        let pattern7 = RegExp('^[+][0-9]{1,2}\\s?[1-9]{1}[0-9]{9}$');
         if (pattern7.test(phoneNumber))
             this._phoneNumber = phoneNumber;
         else console.log('PhoneNumber is Incorrect!');
@@ -81,5 +81,9 @@ class Contact {
     }
 }
 
-let personContact = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
-console.log(personContact.toString());
+let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
+let addressBookArray = new Array();
+addressBookArray.push(personContact1);
+addressBookArray[1] = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
+
+console.log(addressBookArray);
