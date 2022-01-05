@@ -127,6 +127,11 @@ else {
 }
 console.log(addressBookArray);
 addressBookArray.push(personContact2)
+//search and view the contact
 let cityOrState = addressBookArray.filter(contact => (contact.state == "Karnataka") || (contact.city == "Banglore"));
-console.log("Contacts from City Banglore or State Karnataka are : ");
-console.log(cityOrState);
+if (cityOrState.length == 0) {
+    console.log("contact not found");
+} else {
+    console.log("Contacts from City: Banglore or State: Karnataka are ");
+    console.log(cityOrState);
+}
