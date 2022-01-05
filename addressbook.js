@@ -52,7 +52,7 @@ class Contact {
 
     get zipcode() { return this._zipcode; }
     set zipcode(zipcode) {
-        let pattern6 = RegExp('^[0-9]{3}?[\\s,-]{0,1}[0-9]{3}$');
+        let pattern6 = RegExp('^[0-9]{3}?[\\s,-]{0,1}[0-9]{3,}$');
         if (pattern6.test(zipcode))
             this._zipcode = zipcode;
         else console.log('Zipcode is Incorrect!');
@@ -85,5 +85,9 @@ let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka",
 let addressBookArray = new Array();
 addressBookArray.push(personContact1);
 addressBookArray[1] = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+1 7018485591", "methok@gmail.com");
-
 console.log(addressBookArray);
+
+let index = addressBookArray.findIndex((obj => obj._firstname == "Methok"));
+console.log("Before Update : " + addressBookArray[index]);
+addressBookArray[index].city = "Toronto";
+console.log("After Update : " + addressBookArray[index]);
