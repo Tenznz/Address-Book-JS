@@ -128,10 +128,17 @@ else {
 console.log(addressBookArray);
 addressBookArray.push(personContact2)
 //search and view the contact
-let cityOrState = addressBookArray.filter(contact => (contact.state == "Karnataka") || (contact.city == "Banglore"));
+let cityOrState = addressBookArray.filter(contact => ((contact.state == "Karnataka") || (contact.city == "Banglore")));
 if (cityOrState.length == 0) {
     console.log("contact not found");
-} else {
-    console.log("Contacts from City: Banglore or State: Karnataka are ");
-    console.log(cityOrState);
 }
+console.log("Contacts from City: Banglore or State: Karnataka are ");
+console.log(cityOrState);
+
+//count the search by city or state
+let personContact4 = new Contact("Babu", "Rao", "India", "Banglore", "Karnataka", "112 1222", "+91 1232311131", "baburao@gmail.com");
+addressBookArray.push(personContact4);
+console.log(addressBookArray);
+let countByCity = addressBookArray.filter(person => person.city == "Banglore").reduce((count) => count + 1, 0);
+console.log("Total contact from city: Banglore are: "+ countByCity);
+console.log();
