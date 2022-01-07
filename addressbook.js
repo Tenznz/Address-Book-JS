@@ -141,13 +141,13 @@ function addContact() {
     // email = emailRegex();
     // contact = new Contact(fName, lName, address, city, state, zipcode, phoneNumber, email);
     // duplicateCheck(contact);
-    let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "123 122", "+91 7018485591", "dhugkar@gmail.com");
+    let personContact1 = new Contact("Ten", "Duk", "India", "Banglore", "Karnataka", "1231222", "+91 7018485591", "dhugkar@gmail.com");
     duplicateCheck(personContact1);
-    let personContact2 = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "331 1222", "+91 7018485591", "methok@gmail.com");
+    let personContact2 = new Contact("Methok", "Lhaze", "Canada", "Calgary", "Alberta", "3311222", "+91 7018485591", "methok@gmail.com");
     duplicateCheck(personContact2);
-    let personContact4 = new Contact("Babu", "Rao", "India", "Banglore", "Karnataka", "112 1222", "+91 1232311131", "baburao@gmail.com");
+    let personContact4 = new Contact("Babu", "Rao", "India", "Banglore", "Karnataka", "1121222", "+91 1232311131", "baburao@gmail.com");
     duplicateCheck(personContact4)
-    let personContact5 = new Contact("Aman", "Rao", "India", "Patna", "Bihar", "112-1222", "+91 4564567898", "Aman@gmail.com");
+    let personContact5 = new Contact("Aman", "Rao", "India", "Patna", "Bihar", "1121222", "+91 4564567898", "Aman@gmail.com");
     duplicateCheck(personContact5)
 
 }
@@ -179,26 +179,30 @@ function duplicateCheck(personContact) {
     }
 }
 
-// //search and view the contact
+//search and view the contact
 function seachByCityORState(searchCityState) {
-    console.log(addressBookArray);
     let cityOrState = addressBookArray.filter(contact => ((contact.city == searchCityState) || (contact.state == searchCityState)));
     if (cityOrState.length == 0) {
         console.log("contact not found");
     }
+    number = countByField(searchCityState);
+    console.log("total count:" + number);
     console.log("Contacts from City: Banglore or State: Karnataka are ");
     console.log(cityOrState);
 }
-// //count the search by city or state
-// console.log(addressBookArray);
-// let countByCity = addressBookArray.filter(person => person.city == "Patna").reduce((count) => count + 1, 0);
-// console.log("Total contact from city: Patna are: " + countByCity);
-// console.log();
+
+//count the search by city or state
+function countByField(countName) {
+    let count = addressBookArray.filter(person => person.city == countName).reduce((count) => count + 1, 0);
+    return count;
+}
+//print
 function showAddressBook() {
     console.log(addressBookArray);
     console.log(getCount() + " contact in addressbook")
 }
-function compare(a, b) {
+
+function compareByFirstName(a, b) {
     if (a.firstName < b.firstName) {
         return -1;
     }
@@ -208,6 +212,55 @@ function compare(a, b) {
     return 0;
 }
 
+function compareByCity(a, b) {
+    if (a.city < b.city) {
+        return -1;
+    }
+    if (a.city > b.city) {
+        return 1;
+    }
+    return 0;
+}
+
+function compareByState(a, b) {
+    if (a.state < b.state) {
+        return -1;
+    }
+    if (a.state > b.state) {
+        return 1;
+    }
+    return 0;
+}
+
+function compareByZip(a, b) {
+    if (a.zip < b.zip) {
+        return -1;
+    }
+    if (a.zip > b.zip) {
+        return 1;
+    }
+    return 0;
+}
+function sortBy(choice) {
+    console.log("AddressBook After Sorting");
+    switch (choice) {
+        case 1:
+            console.log(addressBookArray.sort(compareByFirstName));
+            break;
+        case 2:
+            console.log(addressBookArray.sort(compareByCity));
+            break;
+        case 3:
+            console.log(addressBookArray.sort(compareByState));
+            break;
+        case 4:
+            console.log(addressBookArray.sort(compareByZip));
+            break;
+        default:
+            console.log("Invalid Input");
+    }
+
+}
 const prompt = require('prompt-sync')();
 const EXIT = 7;
 let addressBookArray = new Array();
@@ -234,8 +287,10 @@ while (again.toLowerCase() == "yes") {
             seachByCityORState(searchText);
             break;
         case 6:
-            console.log("AddressBook After Sorting");
-            console.log(addressBookArray.sort(compare));
+            console.log("1.First Name 2.City 3.State 4.Zip")
+            let sortby = parseInt(prompt("->"));
+            sortBy(sortby);
+
             break;
         case EXIT:
             console.log("bye bye ");
