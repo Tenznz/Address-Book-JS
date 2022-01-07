@@ -1,2 +1,2 @@
 # Address-Book-JS
-Address book in java 
+Address book in javaScript
